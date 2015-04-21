@@ -12,7 +12,11 @@
             <div class="clearfix">
                 <span class="wind-box-altitude">{{! altitude }} ft</span>
                 <span class="wind-box-speed">{{! speed }} knots</span>
-                <span class="wind-box-direction">{{! direction }}</span>
+                <span class="wind-box-direction">
+                    <img wind-direction="{{! direction }}" class="arrow" src="{{ static_url('arrow.svg') }}">
+                    </img>
+                    {{! direction-name }}
+                </span>
             </div>
         </div>
         {{!/ winds }}
@@ -22,13 +26,48 @@
     </div>
 
     <script type="text/javascript">
+        function direction_name(direction) {
+            if (direction < 22.5) {
+                return 'N';
+            } else if (direction < 67.5) {
+                return 'NE';
+            } else if (direction < 112.5) {
+                return 'E';
+            } else if (direction < 157.5) {
+                return 'SE';
+            } else if (direction < 202.5) {
+                return 'S';
+            } else if (direction < 247.5) {
+                return 'SW';
+            } else if (direction < 292.5) {
+                return 'W';
+            } else if (direction < 337.5) {
+                return 'NW';
+            } else {
+                return 'N';
+            }
+        }
+
+        function get_rotation(index, value) {
+            var direction = Math.floor($(this).attr('wind-direction'));
+            var rotate = 360 - (direction % 360);
+
+            return 'rotate(' + rotate + 'deg)';
+        }
+
         function load_winds() {
             $.get('/api/aloft/cvg', function(data) {
-                console.log(data);
+                for (var i = 0; i < data.winds.length; i++) {
+                    data.winds[i]['direction-name'] = direction_name(data.winds[i].direction);
+                }
                 var template = $('#template').html();
                 Mustache.parse(template);
                 var rendered = Mustache.render(template, {winds: data.winds});
                 $('#target').html(rendered);
+                $('.arrow').css('-moz-transform', get_rotation);
+                $('.arrow').css('-webkit-transform', get_rotation);
+                $('.arrow').css('-o-transform', get_rotation);
+                $('.arrow').css('-ms-transform', get_rotation);
             });
         }
 

@@ -51,6 +51,12 @@ span.wind-box-direction {
 	float: left;
 }
 
+img.arrow {
+	width: 1em;
+	height: 1em;
+	color: white;
+}
+
 h1, h2 {
 	text-align: center;
 }
