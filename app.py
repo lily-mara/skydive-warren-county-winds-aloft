@@ -3,7 +3,7 @@ import os
 import tornado.ioloop
 import tornado.web
 import tornado.autoreload
-from tornado.options import define, options
+from tornado.options import define, options, parse_command_line
 
 from aloft import winds_aloft
 
@@ -40,6 +40,7 @@ define(
 )
 
 if __name__ == '__main__':
+	parse_command_line()
 	tornado.autoreload.start()
 
 	application.listen(options.port)
