@@ -1,0 +1,11 @@
+<html>
+    <head>
+        <title>{% block page_title %}{% end %}</title>
+        <link type="text/css" rel="stylesheet" href="{{ static_url('style.css') }}" />
+        <script type="text/javascript" src="{{ static_url('jquery-1.11.2.min.js') }}"></script>
+        <script type="text/javascript" src="{{ static_url('mustache.min.js') }}"></script>
+    </head>
+    <body>
+        {% block content %}{% end %}
+    </body>
+</html>

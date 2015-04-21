@@ -1,0 +1,41 @@
+{% extends 'base.html %}
+
+{% block page_title %}Winds Aloft at Skydive Warren County{% end %}
+
+{% block content %}
+    <h1>Skydive Warren County</h1>
+    <h2>Winds Aloft</h2>
+
+    <script id="template" type="x-tmpl-mustache">
+        {{!# winds }}
+        <div class="wind-box">
+            <div class="clearfix">
+                <span class="wind-box-altitude">{{! altitude }} ft</span>
+                <span class="wind-box-speed">{{! speed }} knots</span>
+                <span class="wind-box-direction">{{! direction }}</span>
+            </div>
+        </div>
+        {{!/ winds }}
+    </script>
+
+    <div id="target">
+    </div>
+
+    <script type="text/javascript">
+        function load_winds() {
+            $.get('/api/aloft/cvg', function(data) {
+                console.log(data);
+                var template = $('#template').html();
+                Mustache.parse(template);
+                var rendered = Mustache.render(template, {winds: data.winds});
+                $('#target').html(rendered);
+            });
+        }
+
+        $(document).ready(function() {
+            load_winds();
+        });
+
+        setInterval(load_winds, 1000*10);
+    </script>
+{% end %}

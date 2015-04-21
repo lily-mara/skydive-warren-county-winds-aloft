@@ -1,0 +1,64 @@
+@import url(http://fonts.googleapis.com/css?family=Oswald);
+
+body {
+	background-color: #47499D;
+	font-family: 'Oswald', sans-serif;
+}
+
+div.wind-box {
+	margin-top: 2%;
+	margin-left: 10%;
+	margin-right: 10%;
+	padding-left: 5%;
+	padding-right: 5%;
+	padding-top: 1em;
+	padding-bottom: 1em;
+	border-color: #FFF;
+	border-width: 2px;
+	border-style: solid;
+	background-color: #7678D0;
+}
+
+div.wind-box span {
+	color: #FFF;
+}
+
+div.wind-box .clearfix:after {
+   content: " ";
+   display: block;
+   height: 0;
+   clear: both;
+}
+
+span.wind-box-altitude {
+	font-size: 4em;
+	text-align: left;
+	width: 33%;
+	float: left;
+}
+
+span.wind-box-speed {
+	font-size: 4em;
+	text-align: center;
+	width: 33%;
+	float: left;
+}
+
+span.wind-box-direction {
+	font-size: 4em;
+	text-align: right;
+	width: 33%;
+	float: left;
+}
+
+h1, h2 {
+	text-align: center;
+}
+
+h1 {
+	font-size: 4em;
+}
+
+h2 {
+	font-size: 3em;
+}
