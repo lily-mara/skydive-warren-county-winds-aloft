@@ -14,6 +14,9 @@ BASE_ADDR = 'http://weather.noaa.gov/pub/data/observations/metar/stations/{}.TXT
 
 
 def add_ground_wind(airport_code, aloft_wind):
+	"""
+	Add the wind information at the ground for the given station code.
+	"""
 	raw = requests.get(BASE_ADDR.format(airport_code.upper()))
 	if raw.status_code == 404:
 		raw = requests.get(BASE_ADDR.format('K' + airport_code.upper()))
