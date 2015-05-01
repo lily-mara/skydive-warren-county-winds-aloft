@@ -50,7 +50,7 @@
 
         function get_rotation(index, value) {
             var direction = Math.floor($(this).attr('wind-direction'));
-            var rotate = 360 - (direction % 360);
+            var rotate = direction + 180;
 
             return 'rotate(' + rotate + 'deg)';
         }
